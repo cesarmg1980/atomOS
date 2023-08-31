@@ -1,0 +1,8 @@
+Next at t=0
+(0) [0x0000fffffff0] f000:fff0 (unk. ctxt): jmpf 0xf000:e05b          ; ea5be000f0
+c
+bx_dbg_read_linear: physical memory read error (phy=0x0000322f3130, lin=0x00000000322f3130)
+Next at t=688972
+(0) [0x0000fffffff0] f000:fff0 (unk. ctxt): jmpf 0xf000:e05b          ; ea5be000f0
+exit
+(0).[688972] [0x0000fffffff0] f000:fff0 (unk. ctxt): jmpf 0xf000:e05b          ; ea5be000f0
