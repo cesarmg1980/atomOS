@@ -1,0 +1,9 @@
+megs:               32
+romimage:           file=/usr/share/bochs/BIOS-bochs-latest 
+vgaromimage:        file=/usr/share/bochs/VGABIOS-lgpl-latest
+display_library:    sdl2
+floppya:            1_44=booting.bin, status=inserted
+boot:               a
+mouse:              enabled=0 
+debugger_log:       bochsdebuggerlog.log
+log:                bochslog.log
