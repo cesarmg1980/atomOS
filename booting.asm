@@ -8,7 +8,17 @@ MAGIC_NUMBER equ 0xaa55         ; The magic number that tells the BIOS
                                 ; that this is the bootloader
 
 main:
-    mov eax, 0xcafecafe     ; putting some reference to 'cafe' into EAX
+    mov ah, 0x0e            ; 0x0e Teletype
+    mov al, 'H'             ; we put the char 'H' in al
+    int 0x10                ; int 0x10, video irq
+    mov al, 'e'             
+    int 0x10
+    mov al, 'l'
+    int 0x10
+    mov al, 'l'
+    int 0x10
+    mov al, 'o'
+    int 0x10
     jmp $                   ; endless loop to this same instruction
 
 
