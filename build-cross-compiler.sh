@@ -29,7 +29,7 @@ export PATH="$PREFIX/bin:$PATH"
 # Define the required dependencies
 DEPENDENCIES=("make" "bison" "flex" "gmp" "libmpc" "mpfr" "texinfo" "isl")
 
-# Define the Compoents Version, Urls and other stuff
+# Define the Components Version, Urls and other stuff
 # Note: Add any new components's Url, Version and related stuff here!
 
 # Homebrew URL
