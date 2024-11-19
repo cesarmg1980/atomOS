@@ -1,7 +1,18 @@
 #!/bin/bash
 
+# Check if ts is installed so we can log the output with timestamps
+if ! command -v ts &> /dev/null; then
+    echo "ts is not installed. Installing ts..."
+    brew install moreutils
+    echo -e "${GREEN}${CHECKMARK}${NC} ts installed successfully."
+fi
+
+LOGFILE="cross-compiler-build.log"
+exec > >(ts '[%Y-%m-%d %H:%M:%S]' | tee -a $LOGFILE) 2>&1
+
 # This script will build a cross-compiler for i686-elf on macOS.
 # Warning: this script will only work on macOS. If you are using Linux, you will need to modify the script accordingly.
+
 echo -e "${YELLOW}Warning${NC}: this script will only work on macOS. If you are using Linux, you will need to modify the script accordingly."
 echo -e "Press any key to continue or Ctrl+C to exit."
 read -n 1 -s
@@ -64,7 +75,7 @@ check_brew_installed() {
 }
 
 check_dependecies_installed() {
-    for dep in "$DEPENDENCIES"; do
+    for dep in ${DEPENDENCIES[@]}; do
         if ! brew list "$dep" &>/dev/null; then
             echo "Dependency $dep is not installed. Installing..."
             brew install "$dep"
