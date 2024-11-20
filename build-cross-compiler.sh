@@ -86,11 +86,18 @@ check_dependecies_installed() {
     done
 }
 
+check_folders() {
+    local FOLDER=$1
+    echo "Creating directory $FOLDER if it does not exist, skipping otherwise..."
+    mkdir -p "$FOLDER"
+}
+
 _run_make_for_component() {
     # Receives a command or a list of commands to run i.e make && make install
-    local MAKE_COMMAND=$1
+    local MAKES=$@
     echo "Running make command..."
-    $(MAKE_COMMAND)
+    eval $MAKES
+    echo -e "${GREEN}${CHECKMARK}${NC} make commands completed successfully."
 }
 
 install_component() {
@@ -141,19 +148,19 @@ verify_installation() {
 }
 # End of Helper functions section
 
-# Main script section
+########################
+# Main script section  #
+########################
 
-# Checking Brew and Dependencies
+# Checking Brew and installing if not installed
 check_brew_installed
 
-# Checking Dependencies
+# Checking Dependencies and installing if not installed
 check_dependecies_installed
 
-# Creating Directories
-echo "Creating directories for sources: $SOURCES_PATH and crosscompiler: $PREFIX"
-mkdir -p "$PREFIX"
-mkdir -p "$SOURCES_PATH"
-echo -e "${GREEN}${CHECKMARK}${NC} Directories for sources and crosscompiler created successfully."
+# Checking Folders and creating if not exists
+check_folders $PREFIX
+check_folders $SOURCES_PATH
 
 # Component Installation Section
 # Note: Install any new components here below using the install_component function
@@ -197,4 +204,6 @@ install_component \
 verify_installation $CROSS_GCC
 
 echo -e "${GREEN}${CHECKMARK}${NC} Done!"
+echo -e "If you want to permanently add the cross-compiler to your PATH, add the following line to your shell configuration file (e.g. ~/.bashrc, ~/.zshrc, etc.): 'export PATH=\"\$HOME/cross-i686-elf/bin:\$PATH\"'"
+echo -e "Or do: echo 'export PATH=\"\$HOME/cross-i686-elf/bin:\$PATH\"' >> ~/.bashrc if you're on bash or echo 'export PATH=\"\$HOME/cross-i686-elf/bin:\$PATH\"' >> ~/.zshrc if you're on zsh."
 # End of script
