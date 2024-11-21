@@ -57,9 +57,9 @@ GDB_VERSION_TAR="gdb-15.2.tar.gz"
 GDB_VERSION="gdb-15.2"
 
 # GCC
-GCC_VERSION_URL="https://ftp.gnu.org/gnu/gcc"
-GCC_VERSION_TAR="gcc-13.2.0.tar.xz"
-GCC_VERSION="gcc-13.2.0"
+GCC_VERSION_URL="https://ftp.gnu.org/gnu/gcc/gcc-14.2.0"
+GCC_VERSION_TAR="gcc-14.2.0.tar.gz"
+GCC_VERSION="gcc-14.2.0"
 
 SOURCES_PATH="$HOME/sources"
 
@@ -131,9 +131,9 @@ install_component() {
         cd $COMPONENT_BUILD_DIR
         ../$COMPONENT_VERSION/configure $COMPONENT_CONFIGURE_OPTIONS
         _run_make_for_component $MAKE_COMMAND
-        echo -e "${GREEN}${CHECKMARK}${NC} $BINUTILS_VERSION installation completed."
+        echo -e "${GREEN}${CHECKMARK}${NC} $COMPONENT_VERSION installation completed."
     else
-        echo -e "${GREEN}${CHECKMARK}${NC} $BINUTILS_VERSION is already installed."
+        echo -e "${GREEN}${CHECKMARK}${NC} $COMPONENT_VERSION is already installed."
     fi
 }
 
